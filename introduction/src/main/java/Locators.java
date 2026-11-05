@@ -3,6 +3,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
 public class Locators {
     private static final String URL = "https://rahulshettyacademy.com/locatorspractice/";
 
@@ -10,7 +12,10 @@ public class Locators {
         WebDriver driver = new ChromeDriver();
         driver.get(URL);
 
-        // Get the username field by it's id
+        // Set a wait time configuration so the "findElement" action will wait until this time before failing
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+
+        // Get the username field by its id
         String userNameId = "inputUsername";
         WebElement userNameField = driver.findElement(By.id(userNameId));
 
@@ -31,9 +36,7 @@ public class Locators {
         // In this case, we're going to use the CSS Selector: p = because it's a p HTML tag (it could be a button, h1, etc.)
         // and error = that's the class name
         String errorCssLocator= "p.error";
-
-        // Wait for the element to show up after failing the login action
-        Thread.sleep(2000);
+        
         WebElement errorMessageAfterFailingLogin = driver.findElement(By.cssSelector(errorCssLocator));
         System.out.println(errorMessageAfterFailingLogin.getText());
     }
