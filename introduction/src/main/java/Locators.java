@@ -39,5 +39,9 @@ public class Locators {
         
         WebElement errorMessageAfterFailingLogin = driver.findElement(By.cssSelector(errorCssLocator));
         System.out.println(errorMessageAfterFailingLogin.getText());
+
+        // For clicking on a link (<a> </a>) that doesn't have other data to find, we can use the linkText to find the link button with a
+        // specific text as the next example:
+        driver.findElement(By.linkText("Forgot your password?")).click();
     }
 }
